@@ -2,14 +2,12 @@ package automation.testsuite;
 
 import java.util.Scanner;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 public class Day7_BTVN {
 
-	private String name, phone;
-	private int id, age;
+	
+	private String name, phone, id;
+	private int  age;
+	Scanner scanner = new Scanner(System.in);
 	public String getName() {
 		return name;
 	}
@@ -22,10 +20,10 @@ public class Day7_BTVN {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public int getAge() {
@@ -35,47 +33,26 @@ public class Day7_BTVN {
 		this.age = age;
 	}
 	
-	@BeforeMethod
-	public void openBrower() {
-		System.out.println("This method to open chrome brower");
-	}
-	Scanner sc = new Scanner(System.in);
-	int n = sc.nextInt();
-	public void inputData() {
-		System.out.print("name:");
-		name = sc.nextLine();
-		System.out.print("phone:");
-		phone = sc.nextLine();
-		System.out.print("id:");
-		id = sc.nextInt();
-		System.out.print("age:");
-		age = sc.nextInt();
-	}
-	public String print() {
-		return "ID: "+ getId() + ",name: "+ getName()+  ",age: "+ this.age + ".phone: "+ this.phone; 
-	}
 	
-	@Test
-	public static void nhapMang(int doDaiMang) {
+	
+	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int[] mangSoNguyen = new int[doDaiMang];
-		for (int i = 0; i < doDaiMang; i++) {
-			System.out.println("Nhập giá trị của mảng ở vị trí thứ: " + i);
-			mangSoNguyen[i] = scanner.nextInt();
+		System.out.println("Nhập số lượng nhân viên: ");
+		int soNV = scanner.nextInt();
+		System.out.println("--------------Nhập thông tin nhân viên---------------------");
+		for(int i=0;i<soNV;i++) {
+			System.out.println("Nhập thông tin nhân viên thứ " + (i+1) + ": ");
+			System.out.println("Chọn nhân viên thuộc phòng ban: \n1 - Developer\n2 - Tester\n3 - BA");
+			
+			nhap();
+			
+			}
+		System.out.println("--------------Xuất thông tin nhân viên---------------------");
+		for(int i=0;i<soNV;i++) {
+			employee[i].xuat();
+			System.out.println("\n");
+		}
 
-		}
-		inMang(mangSoNguyen);
-		
 	}
-	public static void inMang(int[] mangSoNguyen) {
-		System.out.println("Độ dài của mảng " + mangSoNguyen.length);
-		System.out.println("Các giá trị của mảng vừa nhập là: ");
-		for (int i = 0; i < mangSoNguyen.length; i++) {
-			System.out.print(mangSoNguyen[i] + " ");
-		}
-	}
-	@AfterMethod
-	public void closebrower() {
-		System.out.println("This method to close chrome brower");
-	}
+
 }
