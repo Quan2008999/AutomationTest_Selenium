@@ -2,10 +2,6 @@ package automation.testsuite;
 
 import java.util.Scanner;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 public class Day7_BTVN {
 
 	
@@ -18,19 +14,27 @@ public class Day7_BTVN {
 		this.name = name;
 	}
 	
-	@BeforeMethod
-	public void openBrower() {
-		System.out.println("This method to open chrome brower");
+	public static void nhapMang(int doDaiMang) {
+		Scanner scanner = new Scanner(System.in);
+		String[] name = new String[doDaiMang];
+		for (int i = 0; i < doDaiMang; i++) {
+			System.out.println("Nhập tên nhân viên của mảng ở vị trí thứ: " + i);
+			name[i] = scanner.nextLine();
+
+		}
+		inMang(name);
+		
 	}
 
-	@Test
-	public void testcase1() {
-		name = scanner.nextLine();
-		System.out.println("Họ tên nhân viên là : "+name);
+	public static void inMang(String[] name) {
+		System.out.println("Các tên nhân viên của mảng vừa nhập là: ");
+		for (int i = 0; i < name.length; i++) {
+			System.out.print(name[i] + " ");
+		}
+	}
+	public static void main(String[] args) {
+		nhapMang(3);
+
 	}
 
-	@AfterMethod
-	public void closebrower() {
-		System.out.println("This method to close chrome brower");
-	}
 }
