@@ -2,11 +2,14 @@ package automation.testsuite;
 
 import java.util.Scanner;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 public class Day7_BTVN {
 
 	
-	private String name, phone, id;
-	private int  age;
+	public String name;
 	Scanner scanner = new Scanner(System.in);
 	public String getName() {
 		return name;
@@ -14,45 +17,20 @@ public class Day7_BTVN {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
 	
-	
-	
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Nhập số lượng nhân viên: ");
-		int soNV = scanner.nextInt();
-		System.out.println("--------------Nhập thông tin nhân viên---------------------");
-		for(int i=0;i<soNV;i++) {
-			System.out.println("Nhập thông tin nhân viên thứ " + (i+1) + ": ");
-			System.out.println("Chọn nhân viên thuộc phòng ban: \n1 - Developer\n2 - Tester\n3 - BA");
-			
-			nhap();
-			
-			}
-		System.out.println("--------------Xuất thông tin nhân viên---------------------");
-		for(int i=0;i<soNV;i++) {
-			employee[i].xuat();
-			System.out.println("\n");
-		}
-
+	@BeforeMethod
+	public void openBrower() {
+		System.out.println("This method to open chrome brower");
 	}
 
+	@Test
+	public void testcase1() {
+		name = scanner.nextLine();
+		System.out.println("Họ tên nhân viên là : "+name);
+	}
+
+	@AfterMethod
+	public void closebrower() {
+		System.out.println("This method to close chrome brower");
+	}
 }
