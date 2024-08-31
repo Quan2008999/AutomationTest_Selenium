@@ -8,28 +8,18 @@ import org.openqa.selenium.support.PageFactory;
 public class Day14_LoginPageFactory {
 
 	private WebDriver driver;
-	@FindBy(xpath = "//a[@class='btn-anis-effect' and text()='Đăng Ký']") WebElement btnDangKy;
-	@FindBy(id="txtFirstname") WebElement textFirstname;
-	@FindBy(id="txtEmail") WebElement textEmail;
-	@FindBy(id="txtCEmail") WebElement textCEmail;
-	@FindBy(id="txtPassword") WebElement textPassword;
-	@FindBy(id="txtCPassword") WebElement textCPassword;
-	@FindBy(id="txtPhone") WebElement textPhone;
-	@FindBy(xpath = "//button[text()='ĐĂNG KÝ' and @type='submit']") WebElement buttonDangKy;
+	@FindBy(id="txtLoginUsername") WebElement textLoginUsername;
+	@FindBy(id="txtLoginPassword") WebElement textLoginPassword;
+	@FindBy(xpath = "//button[text()='ĐĂNG NHẬP' and @type='submit']") WebElement buttonDangNhap;
 	
 	public Day14_LoginPageFactory(WebDriver _driver) {
 		this.driver = _driver;
 		PageFactory.initElements(_driver, this);
 	}
 	
-	public void LoginFunction(String firstname, String email, String cemail, String pass, String cpass, String phone) {
-		btnDangKy.click();
-		textFirstname.sendKeys(firstname);
-		textEmail.sendKeys(email);
-		textCEmail.sendKeys(cemail);
-		textPassword.sendKeys(pass);
-		textCPassword.sendKeys(cpass);
-		textPhone.sendKeys(phone);
-		buttonDangKy.click();
+	public void LoginFunction(String username, String pass) {
+		textLoginUsername.sendKeys(username);
+		textLoginPassword.sendKeys(pass);
+		buttonDangNhap.click();
 	}
 }
