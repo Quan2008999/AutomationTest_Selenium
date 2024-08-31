@@ -51,4 +51,6 @@ public class Day14_LoginTestFactory extends CommonBase {
 		LoginFactory.LoginFunction("quanca203@gmail.com", "12345678ab");
 		assertTrue(driver.findElement(By.xpath("//img[@alt='alada.vn']")).isDisplayed());
 	}
+	
+	//âbbababba
 }
