@@ -9,4 +9,7 @@ public class CT_PageURLs {
 	public static String URL_crmstar = "http://test-system.crmstar.vn/ ";
 	public static String URL_TEDU = "https://tedu.com.vn/dang-nhap.html";
 	public static String URL_GURU99 = "https://demo.guru99.com/test/";
+	public static String URL_CUSTOMER = "https://demo.guru99.com/test/delete_customer.php";
+	public static String URL_AUTOMATIONTESTING = "https://demo.automationtesting.in/Alerts.html";
+	public static String URL_seleniumpractise = "http://seleniumpractise.blogspot.com/2019/01/alert-demo.html";
 }
