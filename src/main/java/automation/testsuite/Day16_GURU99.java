@@ -4,8 +4,12 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -20,25 +24,48 @@ public class Day16_GURU99 extends CommonBase {
 	}
 	
 	@Test(priority = 1)
-	public void pressOkOnAlert() {
-		driver.switchTo().alert().sendKeys("Quan123456");
+	public void acceptAlert() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("cusid")));
+		WebElement cusTextBox =  driver.findElement(By.name("cusid"));
+		cusTextBox.sendKeys("Quan123456");
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("submit")));
+		WebElement btnSubmit =  driver.findElement(By.name("submit"));
+		wait.until(ExpectedConditions.elementToBeClickable(btnSubmit));
+		btnSubmit.click();
+		
+		wait.until(ExpectedConditions.alertIsPresent());
 		driver.switchTo().alert().accept();
-		String actualMessage = driver.switchTo().alert().getText();
-		assertEquals(actualMessage, "Do you really want to delete this Customer?");
+		
+		wait.until(ExpectedConditions.alertIsPresent());
+		driver.switchTo().alert().accept();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[text()='Delete Customer Form']")));
+		assertTrue(driver.findElement(By.xpath("//td[text()='Delete Customer Form']")).isDisplayed());
 	}
 	
 	@Test(priority = 2)
-	public void pressOkOnAlert2() {
-		driver.switchTo().alert().sendKeys("Quan123456");
+	public void dismissAlert() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("cusid")));
+		WebElement cusTextBox =  driver.findElement(By.name("cusid"));
+		cusTextBox.sendKeys("Quan123456");
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("submit")));
+		WebElement btnSubmit =  driver.findElement(By.name("submit"));
+		wait.until(ExpectedConditions.elementToBeClickable(btnSubmit));
+		btnSubmit.click();
+		
+		wait.until(ExpectedConditions.alertIsPresent());
 		driver.switchTo().alert().accept();
-		String actualMessage = driver.switchTo().alert().getText();
-		assertEquals(actualMessage, "Customer Successfully Delete!");
+		
+		wait.until(ExpectedConditions.alertIsPresent());
+		driver.switchTo().alert().dismiss();
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//td[text()='Delete Customer Form']")));
+		assertTrue(driver.findElement(By.xpath("//td[text()='Delete Customer Form']")).isDisplayed());
 	}
 	
-	@Test(priority = 3)
-	public void pressOkOnAlert3() {
-		driver.switchTo().alert().sendKeys("Quan123456");
-		driver.switchTo().alert().accept();
-		assertTrue(isElementVisibility(By.xpath("//td[text()='Delete Customer Form']")));
-	}
+	
 }
